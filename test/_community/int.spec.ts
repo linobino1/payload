@@ -60,6 +60,23 @@ describe('_Community Tests', () => {
     expect(newPost.title).toEqual('LOCAL API EXAMPLE')
   })
 
+  it('check if t function in beforeChange hook has the correct locale', async () => {
+    await Promise.all(
+      ['en', 'de'].map(async (locale) => {
+        const germanPost = await payload.create({
+          collection: postsSlug,
+          data: {
+            title: 'post',
+          },
+          locale: locale as 'de' | 'en',
+        })
+
+        expect(germanPost.reqLocale).toEqual(locale)
+        expect(germanPost.tFunctionLocale).toEqual(locale)
+      }),
+    )
+  })
+
   it('rest API example', async () => {
     const data = await restClient
       .POST(`/${postsSlug}`, {

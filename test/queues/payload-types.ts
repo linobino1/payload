@@ -223,21 +223,6 @@ export interface PayloadJob {
           | number
           | boolean
           | null;
-        parent?: {
-          taskSlug?:
-            | (
-                | 'inline'
-                | 'UpdatePost'
-                | 'UpdatePostStep2'
-                | 'CreateSimple'
-                | 'CreateSimpleRetriesUndefined'
-                | 'CreateSimpleRetries0'
-                | 'CreateSimpleWithDuplicateMessage'
-                | 'ExternalTask'
-              )
-            | null;
-          taskID?: string | null;
-        };
         state: 'failed' | 'succeeded';
         error?:
           | {
@@ -409,12 +394,6 @@ export interface PayloadJobsSelect<T extends boolean = true> {
         taskID?: T;
         input?: T;
         output?: T;
-        parent?:
-          | T
-          | {
-              taskSlug?: T;
-              taskID?: T;
-            };
         state?: T;
         error?: T;
         id?: T;

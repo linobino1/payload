@@ -36,7 +36,7 @@ export interface Config {
   globalsSelect: {
     menu: MenuSelect<false> | MenuSelect<true>;
   };
-  locale: null;
+  locale: 'de' | 'en';
   user: User & {
     collection: 'users';
   };
@@ -70,6 +70,8 @@ export interface UserAuthOperations {
 export interface Post {
   id: string;
   title?: string | null;
+  reqLocale?: string | null;
+  tFunctionLocale?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -202,6 +204,8 @@ export interface PayloadMigration {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  reqLocale?: T;
+  tFunctionLocale?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

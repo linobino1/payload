@@ -1,4 +1,6 @@
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { de } from '@payloadcms/translations/languages/de'
+import { en } from '@payloadcms/translations/languages/en'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 
@@ -24,6 +26,24 @@ export default buildConfigWithDefaults({
     // ...add more globals here
     MenuGlobal,
   ],
+  localization: {
+    locales: ['de', 'en'],
+    defaultLocale: 'en',
+  },
+  i18n: {
+    supportedLanguages: {
+      de,
+      en,
+    },
+    translations: {
+      de: {
+        locale: 'de',
+      },
+      en: {
+        locale: 'en',
+      },
+    },
+  },
   onInit: async (payload) => {
     await payload.create({
       collection: 'users',
@@ -36,7 +56,7 @@ export default buildConfigWithDefaults({
     await payload.create({
       collection: postsSlug,
       data: {
-        title: 'example post',
+        title: 'first post',
       },
     })
   },
